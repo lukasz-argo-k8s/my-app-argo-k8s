@@ -1,0 +1,37 @@
+# Deployment definition showing how to manage multiple replicas of a Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment-02
+  namespace: lukasz
+  labels:
+    # labels are optional
+    app: example-webserver
+    tier: frontend
+spec:
+  # Number of desired Pod replicas to run
+  replicas: 3
+  # Selector defines how the Deployment finds which Pods to manage
+  # All kubernetes resources are loosely coupled, so they need to be matched by labels
+  selector:
+    matchLabels:
+      app: this-must-match
+  # Template for the Pods that will be created by this Deployment
+  template:
+    metadata:
+      # Labels for the Pods (must match the selector above)
+      labels:
+        app: this-must-match
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m" 
