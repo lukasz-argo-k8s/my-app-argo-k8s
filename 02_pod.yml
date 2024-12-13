@@ -1,0 +1,27 @@
+# Simple Pod definition demonstrating basic Kubernetes concepts
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lukasz-pod
+  namespace: lukasz
+  labels:
+    # Labels are key-value pairs used for organizing and selecting objects
+    app: example
+spec:
+  containers:
+  - name: nginx
+    # Docker Hub is the default registry if no registry is specified
+    # `library` is the default repository namespace for official images
+    # The full implicit path would be `docker.io/library/nginx:1.25`
+    image: nginx:1.25
+    ports:
+      # Exposing port 80 for HTTP traffic
+      - containerPort: 80
+    # Resource requests and limits example
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "100m"
+      limits:
+        memory: "128Mi"
+        cpu: "200m"
