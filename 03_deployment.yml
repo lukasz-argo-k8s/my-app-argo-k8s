@@ -10,7 +10,7 @@ metadata:
     tier: frontend
 spec:
   # Number of desired Pod replicas to run
-  replicas: 1
+  replicas: 3
   # Selector defines how the Deployment finds which Pods to manage
   # All kubernetes resources are loosely coupled, so they need to be matched by labels
   selector:
